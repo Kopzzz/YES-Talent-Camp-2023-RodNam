@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+  <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Routing Map Sample | Longdo Map</title>
+        <style type="text/css">
+        html{
+          height:100%; 
+        }
+        body{ 
+          margin:0px;
+          height:100%; 
+        }
+        #map {
+          height: 100%;
+        }
+        #result {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          width: 1px;
+          height: 80%;
+          margin: auto;
+          border: 4px solid #dddddd;
+          background: #ffffff;
+          overflow: auto;
+          z-index: 2;
+      }
+      </style>
+
+        <script type="text/javascript" src="https://api.longdo.com/map/?key=8d8006393479840fa799e5d97883b3d9"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script>
+
+          function init() {
+            map = new longdo.Map({
+              placeholder: document.getElementById('map'),
+              location: {
+                lat: 14.8401819,
+                lon: 99.7447684
+              } // Set the initial center
+            });
+
+            map.Route.placeholder(document.getElementById('result'));
+
+            map.Route.add({lat: 14.8401819, lon:99.7447684 });
+
+            map.Overlays.add(new longdo.Marker(
+                {  lat: 14.8730969, lon: 99.5132013 },
+                { title: 'อ่างเก็บน้ำห้วยท่าเดื่อ'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.91598049, lon: 99.3657235},
+                { title: 'เขื่อนห้วยยาง'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.838537, lon: 99.667799},
+                { title: 'เขื่อนกระเสียว'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.7772939, lon: 99.43752278},
+                { title: 'อ่างเก็บน้ำลำตะเพิน'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.788015375864056, lon: 99.53892898},
+                { title: 'อ่างเก็บน้ำหุบเขาวง'}
+            ));
+            
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.9213563, lon: 100.044893},
+                { title: 'บึงฉวาก'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.931574349356097, lon: 99.53172354 },
+                { title: 'อ่างเก็บน้ำห้วยขมิ้น'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.81220294, lon: 99.61064758},
+                { title: 'อ่างเก็บน้ำหนองดม'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.666448509227699, lon: 100.1126498},
+                { title: 'แม่น้ำสุพรรณบุรี (ท่าจีน)'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.298548364858396, lon: 99.82300641},
+                { title: 'คลองจรเข้สามพัน'}
+            ));
+
+            map.Overlays.add(new longdo.Marker(
+                { lat: 14.298548364858396, lon: 99.82300641},
+                { title: 'คลองสองพี่น้อง'}
+            ));
+
+            map.Route.add({ lat: 14.838537, lon: 99.667799 });
+
+            map.Event.bind('overlayClick', function(overlay) {
+                map.Route.removeAt(1)
+                // map.Route.clearPath()
+                var mouseLocation = overlay.location();
+                map.Route.add(mouseLocation);
+            });
+            
+          }
+        </script>
+    </head>
+    <body onload="init();">
+        <div id="map"></div>
+        <div id="result"></div>
+
+    </body>
+  </html>
